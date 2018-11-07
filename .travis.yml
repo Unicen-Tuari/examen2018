@@ -1,0 +1,25 @@
+sudo: required
+language: php
+dist: trusty
+
+php:
+  - 7.1
+
+services:
+  - postgresql
+
+install:
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+
+before_script:
+  - psql -c 'create database products;' -U postgres
+  - cp .env.travis .env
+  - php artisan key:generate  
+  - php artisan migrate
+  - composer dump-autoload
+
+script:
+  - ./vendor/bin/phpunit --coverage-clover clover.xml
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -cF php
