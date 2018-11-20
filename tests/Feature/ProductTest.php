@@ -18,6 +18,13 @@ class ProductTest extends TestCase
         $product = factory(Product::class)->create();
         $response = $this->get('/');
         $response->assertSeeText($product->nombre);
+        $response->assertSeeText($product->puntaje);
         $response->assertStatus(200);
+    }
+    public function testProm(){
+        $product = factory(Product::class)->create();
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('Promedio');
     }
 }

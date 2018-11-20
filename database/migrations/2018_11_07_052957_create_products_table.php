@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->integer('precio');
+            $table->integer('puntaje');
             $table->timestamps();
         });
     }
