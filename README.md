@@ -1,5 +1,9 @@
 # Examen TUPAR 2018
 
+## Enunciado
+
+[Enunciado](https://drive.google.com/open?id=1GdmzuZQsKHMalIKmEiPd2qIpg-plGzOcdMxbSQFJyoA)
+
 ## Como ejecutar la app
 `docker-compose up`
 
