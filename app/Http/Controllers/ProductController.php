@@ -15,7 +15,8 @@ class ProductController extends Controller
     public function index()
     {
       $products = Product::all();
-      return view('product.index',['products' => $products]);
+      $promedio= Product::promedio();
+      return view('product.index',['products' => $products, 'promedio' => $promedio]);
     }
 
     /**
@@ -25,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product/alta');
     }
 
     /**
@@ -36,7 +37,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto= $request->all();
+        Product::create($producto);
+        return redirect()->route('product.index');
     }
 
     /**
@@ -56,9 +59,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $producto=Product::findorfail($id);
+        return view('product/editar',compact('producto'));
     }
 
     /**
@@ -68,9 +72,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $producto=$request->all();
+        Product::find($id)->update($producto);
+        return redirect()->route('product.index');
     }
 
     /**
@@ -79,8 +85,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $producto=Product::find($id);
+        $producto->delete();
+        return redirect()->route('product.index');
     }
-}
+    
+}   
