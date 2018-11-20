@@ -20,4 +20,12 @@ class ProductTest extends TestCase
         $response->assertSeeText($product->nombre);
         $response->assertStatus(200);
     }
+
+    public function testMuestraPromedio()
+    {
+        $product = factory(Product::class)->create();
+        $response = $this->get('/');
+        $response->assertSeeText('Promedio de precios')
+                 ->assertStatus(200);
+    }
 }
