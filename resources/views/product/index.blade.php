@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
   <h1>Lista de Productos</h1>
+  <p> <a href="{{url('/cargar')}}">cargar</p>
   <table class="table table-striped">
     <thead>
       <th>Nombre</th>
@@ -15,6 +16,10 @@
           <td>$ {{$product->precio}}</td>
         </tr>
       @endforeach
+      <tr>
+        <td>Promedio</td>
+        <td>{{$promedio}}</td>
+      </tr>
     </tbody>
   </table>
 </div>
