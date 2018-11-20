@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'ProductController@index');
+/*Route::get('/edit/{nombre}', 'ProductController@edit')->name('product.edit');;*/
+
 
 Route::resource('product', 'ProductController');
 

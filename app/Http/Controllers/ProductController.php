@@ -12,11 +12,36 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-      $products = Product::all();
-      return view('product.index',['products' => $products]);
-    }
+
+
+     public function index()
+      {
+        $products = Product::all();
+        $total = 0;
+        $c = 0;
+        foreach($products as $product){
+          $total+= $product['precio'];
+          $c++;
+        }
+        $promedio = $total / $c;
+        return view('product.index',['products' => $products], ['promedio' => $promedio]);
+      }
+
+      public function cargar()
+       {
+
+       }
+
+      /* public function edit($nombre)
+        {
+
+        }*/
+
+      /*public function borrar($nombre)
+         {
+
+         }*/
+
 
     /**
      * Show the form for creating a new resource.
