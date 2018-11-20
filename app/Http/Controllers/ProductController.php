@@ -14,8 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
+       $prod = Product::getProm();
       $products = Product::all();
-      return view('product.index',['products' => $products]);
+      return view('product.index',['products' => $products] , ['prom' => $prod]);
     }
 
     /**
