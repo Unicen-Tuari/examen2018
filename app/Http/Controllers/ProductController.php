@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
       $products = Product::all();
-      return view('Product.index',['products' => $products]);
+      return view('product.index',['products' => $products]);
     }
 
     /**
